@@ -31,7 +31,17 @@ class Tree {
   /** countEvens(): count all of the nodes in the tree with even values. */
 
   countEvens() {
-
+    if(!this.root) return 0;
+    let count = 0;
+    const sumStack = [this.root]
+    while(sumStack.length){
+      const current = sumStack.pop()
+      if(current.val % 2 == 0) count++;
+      for(let child of current.children){
+        sumStack.push(child)
+      }
+    }
+    return count;
   }
 
   /** numGreater(lowerBound): return a count of the number of nodes
