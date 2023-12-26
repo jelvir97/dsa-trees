@@ -33,12 +33,12 @@ class Tree {
   countEvens() {
     if(!this.root) return 0;
     let count = 0;
-    const sumStack = [this.root]
-    while(sumStack.length){
-      const current = sumStack.pop()
+    const stack = [this.root]
+    while(stack.length){
+      const current = stack.pop()
       if(current.val % 2 == 0) count++;
       for(let child of current.children){
-        sumStack.push(child)
+        stack.push(child)
       }
     }
     return count;
@@ -48,7 +48,17 @@ class Tree {
    * whose value is greater than lowerBound. */
 
   numGreater(lowerBound) {
-
+    if(!this.root) return 0;
+    let count = 0;
+    const stack = [this.root]
+    while(stack.length){
+      const current = stack.pop()
+      if(current.val > lowerBound) count++;
+      for(let child of current.children){
+        stack.push(child)
+      }
+    }
+    return count;
   }
 }
 
