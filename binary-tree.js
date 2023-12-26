@@ -69,7 +69,20 @@ class BinaryTree {
    * which is larger than lowerBound. Return null if no such value exists. */
 
   nextLarger(lowerBound) {
+    if(!this.root) return null;
+    const stack = [this.root]
+    let minVal = null;
+    while(stack.length){
+      const current = stack.pop()
+      if (current.val > lowerBound){
+        minVal = minVal ? Math.min(current.val) : current.val
+      }
+      
+      if(current.right) stack.push(current.right)
+      if(current.left) stack.push(current.left)
+    }
 
+    return minVal;
   }
 
   /** Further study!
